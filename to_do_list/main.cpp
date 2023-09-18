@@ -18,7 +18,6 @@ int main() {
     while (true) {
         int user_action_two;
 
-
         std::string name;
         std::string description;
         int todo_id;
@@ -33,6 +32,7 @@ int main() {
             std::getline(std::cin, name);
             std::cout << "Write description of your todo:" << std::endl;
             std::getline(std::cin, description);
+
             Todo::add_todo(todo_list, name, description);
             break;
         case 3:
@@ -51,12 +51,14 @@ int main() {
                 std::cout << "Enter new todo name" << std::endl;
                 std::cin.ignore();
                 std::getline(std::cin, name);
+
                 Todo::edit_todo_name(todo_list, todo_id, name);
                 break;
             case 2:
                 std::cout << "Enter new todo description" << std::endl;
                 std::cin.ignore();
                 std::getline(std::cin, description);
+
                 Todo::edit_todo_description(todo_list, todo_id, description);
                 break;
             case 3:
@@ -65,6 +67,7 @@ int main() {
                 std::getline(std::cin, name);
                 std::cout << "Enter new todo description" << std::endl;
                 std::getline(std::cin, description);
+
                 Todo::edit_todo(todo_list, todo_id, name, description);
                 break;
             default:

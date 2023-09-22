@@ -5,52 +5,52 @@
 #include <string>
 
 class Todo {
-    int m_todo_id = 1;
-    std::string m_todo_name;
-    std::string m_todo_description;
+    int m_todoId = 1;
+    std::string m_todoName;
+    std::string m_todoDescription;
 
 public:
 
-    static void add_todo(std::vector<Todo>& todo_list, std::string name, std::string description) {
+    static void add_todo(std::vector<Todo>& todoList, std::string name, std::string description) {
         Todo todo;
-        if (!todo_list.empty()) {
-            todo.m_todo_id = todo_list.back().m_todo_id + 1;
+        if (!todoList.empty()) {
+            todo.m_todoId = todoList.back().m_todoId + 1;
         }
-        todo.m_todo_name = std::move(name);
-        todo.m_todo_description = std::move(description);
+        todo.m_todoName = name;
+        todo.m_todoDescription = description;
 
-        todo_list.emplace_back(todo);
+        todoList.emplace_back(todo);
     }
 
-    static void edit_todo(std::vector<Todo>& todo_list, int todo_id, std::string name, std::string description) {
-        todo_list[todo_id - 1].m_todo_name = std::move(name);
-        todo_list[todo_id - 1].m_todo_description = std::move(description);
+    static void edit_todo(std::vector<Todo>& todoList, const int& todoId, std::string name, std::string description) {
+        todoList[todoId - 1].m_todoName = name;
+        todoList[todoId - 1].m_todoDescription = description;
     }
 
-    static void edit_todo_name(std::vector<Todo>& todo_list, int todo_id, std::string name) {
-        todo_list[todo_id - 1].m_todo_name = std::move(name);
+    static void edit_todo_name(std::vector<Todo>& todoList, const int& todoId, std::string name) {
+        todoList[todoId - 1].m_todoName = name;
     }
 
-    static void edit_todo_description(std::vector<Todo>& todo_list, int todo_id, std::string description) {
-        todo_list[todo_id - 1].m_todo_description = std::move(description);
+    static void edit_todo_description(std::vector<Todo>& todoList, const int& todoId, std::string description) {
+        todoList[todoId - 1].m_todoDescription = description;
     }
 
-    static void remove_todo(std::vector<Todo>& todo_list, int todo_id) {
-        todo_list.erase(todo_list.cbegin() + todo_id - 1);
-        for (int i = todo_id - 1; i < todo_list.size(); i++) {
-            todo_list[i].m_todo_id--;
+    static void remove_todo(std::vector<Todo>& todoList, const int& todoId) {
+        todoList.erase(todoList.cbegin() + todoId - 1);
+        for (int i = todoId - 1; i < todoList.size(); i++) {
+            todoList[i].m_todoId--;
         }
     }
 
-    static void show_todos(std::vector<Todo>& todo_list) {
+    static void show_todos(std::vector<Todo>& todoList) {
         system("cls");
-        if (todo_list.empty()) {
+        if (todoList.empty()) {
             std::cout << "There are no todos" << std::endl;
         }
         else {
             std::cout << "Todo id" << " | " << "Todo name" << " | " << "Todo description" << std::endl;
-            for (const auto& todo : todo_list) {
-                std::cout << todo.m_todo_id << " | " << todo.m_todo_name << " | " << todo.m_todo_description << std::endl;
+            for (const auto& todo : todoList) {
+                std::cout << todo.m_todoId << " | " << todo.m_todoName << " | " << todo.m_todoDescription << std::endl;
             }
         }
     }
